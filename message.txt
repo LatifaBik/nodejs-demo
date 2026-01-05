@@ -1,0 +1,2 @@
+This is a text from message.txt!!!
+Now there are two tines !!
