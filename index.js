@@ -3,11 +3,17 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const port = process.env.PORT || 3000;
 const server = http.createServer((req, res) => {
-  const filePath = path.join(__dirname, "message.txt");
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("Hello from Azure!");
+
+/*const server = http.createServer((req, res) => {
+  const filePath = path.join(__dirname, "message.txt");*/
 
   fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
@@ -19,11 +25,13 @@ const server = http.createServer((req, res) => {
     }
   });
 });
-const port = process.env.PORT || 3000;
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 
-app.listen(port, () => {
-  console.log("Server running on port", port);
+/*app.listen(port, () => {
+  console.log("Server running on port", port);*/
 });
+
 
 /*server.listen(3000, () => {
   console.log("Server is running on port 3000");
